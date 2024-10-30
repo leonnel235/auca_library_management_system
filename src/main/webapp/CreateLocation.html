@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Location</title>
+    <style>
+        /* General styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #eef2f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        h1 {
+            color: #2c3e50;
+            font-size: 1.8em;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Container styling */
+        .container {
+            max-width: 500px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Form styling */
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            font-weight: 600;
+            color: #34495e;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccd1d9;
+            border-radius: 5px;
+            font-size: 1em;
+            color: #555;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus,
+        select:focus {
+            border-color: #5cb85c;
+        }
+
+        /* Submit button */
+        input[type="submit"] {
+            background-color: #5a67d8;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #434190;
+        }
+
+        /* Message styling */
+        .message {
+            padding: 12px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            font-size: 0.9em;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .success {
+            background-color: #dff0d8;
+            color: #3c763d;
+        }
+
+        .error {
+            background-color: #f2dede;
+            color: #a94442;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Create New Location</h1>
+
+    <!-- Message display area -->
+    <div id="message" class="message" style="display: none;"></div>
+
+    <form action="LocationServlet" method="post">
+        <div class="form-group">
+            <label for="locationCode">Location Code:</label>
+            <input type="text" id="locationCode" name="locationCode" required>
+        </div>
+
+        <div class="form-group">
+            <label for="locationName">Location Name:</label>
+            <input type="text" id="locationName" name="locationName" required>
+        </div>
+
+        <div class="form-group">
+            <label for="locationType">Location Type:</label>
+            <select id="locationType" name="locationType" required>
+                <option value="" disabled selected>Select Location Type</option>
+                <option value="PROVINCE">Province</option>
+                <option value="DISTRICT">District</option>
+                <option value="SECTOR">Sector</option>
+                <option value="CELL">Cell</option>
+                <option value="VILLAGE">Village</option>
+            </select>
+        </div>
+
+        <input type="submit" value="Create Location">
+    </form>
+</div>
+
+<script>
+    // Function to get URL parameters
+    function getUrlParameter(name) {
+        name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+        var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+        var results = regex.exec(location.search);
+        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    }
+
+    // Check for success or error messages in the URL
+    window.onload = function() {
+        var message = getUrlParameter('message');
+        var error = getUrlParameter('error');
+        var messageDiv = document.getElementById('message');
+
+        if (message) {
+            messageDiv.innerHTML = message;
+            messageDiv.className = 'message success';
+            messageDiv.style.display = 'block';
+        } else if (error) {
+            messageDiv.innerHTML = error;
+            messageDiv.className = 'message error';
+            messageDiv.style.display = 'block';
+        }
+    };
+</script>
+
+</body>
+</html>

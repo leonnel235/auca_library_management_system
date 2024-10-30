@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Membership Registration</title>
+    <style>
+        /* Global and body styling */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #eef2f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Container styling */
+        .form-container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 100%;
+            max-width: 450px;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .form-container:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Form heading */
+        h2 {
+            text-align: center;
+            color: #2c3e50;
+            font-size: 1.8em;
+            margin-bottom: 25px;
+        }
+
+        /* Form group styling */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            color: #34495e;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        input[type="text"],
+        input[type="datetime-local"],
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccd1d9;
+            border-radius: 5px;
+            font-size: 1em;
+            color: #555;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus,
+        input[type="datetime-local"]:focus,
+        select:focus {
+            border-color: #5a67d8;
+        }
+
+        select {
+            appearance: none;
+            background-color: #fff;
+            cursor: pointer;
+        }
+
+        /* Submit button styling */
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            background-color: #5a67d8;
+            color: #fff;
+            font-size: 1em;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: #434190;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Register Membership</h2>
+    <form action="MembershipServlet" method="post">
+        <div class="form-group">
+            <label for="membershipCode">Membership Code</label>
+            <input type="text" id="membershipCode" name="membershipCode" required>
+        </div>
+
+        <div class="form-group">
+            <label for="membershipStatus">Membership Status</label>
+            <select id="membershipStatus" name="membershipStatus" required>
+                <option value="" disabled selected>Select Status</option>
+                <option value="APPROVED">approved</option>
+                <option value="REJECTED">rejected</option>
+                <option value="PENDING">pending</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="membershipTypeId">Membership Type ID</label>
+            <input type="text" id="membershipTypeId" name="membershipTypeId" required>
+        </div>
+
+        <div class="form-group">
+            <label for="readerId">Person ID</label>
+            <input type="text" id="personId" name="personId" required>
+        </div>
+
+        <div class="form-group">
+            <label for="expiringTime">Expiring Time</label>
+            <input type="datetime-local" id="expiringTime" name="expiringTime">
+        </div>
+
+        <button type="submit" class="submit-btn">Register Membership</button>
+    </form>
+</div>
+
+</body>
+</html>
